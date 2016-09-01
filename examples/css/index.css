@@ -1,0 +1,28 @@
+body {
+  margin: 100px auto;
+  max-width: 900px;
+  background: #545470;
+}
+
+.main-title {
+  text-transform: uppercase;
+  font-size: 4em;
+  color: #24232B;
+  line-height: 0;
+}
+
+.subtitle {
+  font-size: 2em;
+  text-transform: lowercase;
+  color: #E7DDDB;
+  margin-bottom: 50px;
+}
+
+.title {
+  color: #3B9699;
+  font-size: 2em;
+}
+
+img {
+  max-width: 100%;
+}
