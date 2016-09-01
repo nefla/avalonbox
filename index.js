@@ -1,3 +1,3 @@
-var avalonbox = require('./src/avalon_box')
+var avalonbox = require('./src/scripts/avalon_box')
 
 module.exports = avalonbox;
