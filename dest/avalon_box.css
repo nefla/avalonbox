@@ -24,6 +24,9 @@
   transform: translate(-50%, -50%);
   border: 9px solid #fff; }
 
+.avalonbox-frame-image {
+  max-width: 100%; }
+
 .avalonbox-prev-button, .avalonbox-next-button {
   border: none;
   width: 60px;
