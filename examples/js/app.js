@@ -1,4 +1,4 @@
-import avalonbox from '../../src/scripts/avalon_box';
+import avalonbox from '../../src/scripts/avalonbox';
 
 document.onreadystatechange = function(){
   if(document.readyState === 'complete'){
