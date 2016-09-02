@@ -8,7 +8,7 @@
     "compile": "babel --presets es2015 -d lib/ src/",
     "clean": "rm -r dest/*",
     "cp:html": "cp src/templates/index.html dest/",
-    "build:css": "node-sass src/styles/ -o dest/",
+    "build:css": "node-sass styles/ -o dest/",
     "build:js": "browserify -d examples/js/app.js -o examples/app.js -t [ babelify --presets [ es2015 ] ]",
     "build": "npm run build:css && npm run build:js",
     "watch:css": "npm run build:css -- -w",
