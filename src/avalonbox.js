@@ -75,8 +75,10 @@ const Avalonbox = (function(){
     image.id = `${box}-frame-image`
 
     let link = document.createElement('a')
-    link.target = "_blank"
     link.appendChild(image)
+
+    bind(link, 'click', e => { e.preventDefault() })
+
     frame.appendChild(link)
     return {container: frame, image: image, link: link}
   }
@@ -104,8 +106,10 @@ const Avalonbox = (function(){
   function eventHandlers(query){
     let links = document.getElementById(query.replace('#', ''))
       .getElementsByTagName('a')
-    for (let link of links)
+    links = [].slice.call(links)
+    links.forEach(link => {
       bind(link, 'click', showOverlay)
+    })
 
     bind(overlay, 'click', hideOverlay)
     bind(buttons.prev, 'click', previous)
