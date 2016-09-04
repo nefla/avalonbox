@@ -2,27 +2,27 @@
 
 > A simple lightbox solution in vanilla js.
 
-# Install
+## Install
 
 ```
 npm install https://github.com/Nafta7/avalonbox
 ```
 
-# Usage
+## Usage
 
 ```js
 import avalonbox from 'avalonbox'
 avalonbox.init('#image-gallery')
 ```
 
-# CSS
+## CSS
 
-## Option 1: CDN
+### Option 1: CDN
 
 For a quick start you can just grab the css file from the github cdn:
 https://cdn.rawgit.com/Nafta7/avalonbox/master/dest/avalonbox.css
 
-## Option 2: Integration with Sass
+### Option 2: Integration with Sass
 
 Avalonbox was built using Sass and its easy to integrate
 with your Sass code. You can download the source files from
@@ -60,7 +60,7 @@ within your main Sass code:
 
 It's three/four steps but I think it's worth the hassle.
 
-# Examples
+## Examples
 
 HTML sample code:
 
@@ -81,6 +81,6 @@ HTML sample code:
 
 </div>
 ```
-# License
+## License
 
 MIT.
