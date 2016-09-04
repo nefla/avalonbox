@@ -5,15 +5,21 @@
   "main": "lib/scripts/avalonbox.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "babel --presets es2015 -d lib/ src/",
     "clean": "rm -r dest/*",
-    "cp:html": "cp src/templates/index.html dest/",
-    "build:css": "node-sass styles/ -o dest/",
-    "build:js": "browserify -d examples/js/app.js -o examples/app.js -t [ babelify --presets [ es2015 ] ]",
+
+    "deploy:site": "gh-pages -d examples",
+    "deploy:css": "node-sass styles/ -o examples/css",
+    "deploy:js": "browserify -d examples/js/app.js -o examples/app.js -t [ babelify --presets [ es2015 ] ]",
+
+    "build:js": "babel --presets es2015 -d lib/ src/",
+    "build:css": "node-sass styles/ -o dist/",
     "build": "npm run build:css && npm run build:js",
-    "watch:css": "npm run build:css -- -w",
+
     "watch:js": "watchify examples/js/app.js -d -o examples/app.js -t [ babelify --presets [ es2015 ] ]",
-    "serve": "npm run watch:css | npm run watch:js"
+    "watch:css": "npm run deploy:css -- -w",
+    "serve": "npm run watch:css | npm run watch:js",
+
+    "prepublish": "npm run build:js && npm run build:css"
   },
   "keywords": [],
   "author": "nafta",
@@ -23,6 +29,7 @@
     "babel-preset-es2015": "^6.14.0",
     "babelify": "^7.3.0",
     "browserify": "^13.1.0",
+    "gh-pages": "^0.11.0",
     "node-sass": "^3.8.0",
     "watchify": "^3.7.0"
   }
