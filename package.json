@@ -5,14 +5,14 @@
   "main": "lib/scripts/avalonbox.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -r dest/*",
+    "clean": "rm -r dist/*",
 
     "deploy:site": "gh-pages -d examples",
     "deploy:css": "node-sass styles/ -o examples/css",
     "deploy:js": "browserify -d examples/js/app.js -o examples/app.js -t [ babelify --presets [ es2015 ] ]",
 
-    "build:js": "babel --presets es2015 -d lib/ src/",
-    "build:css": "node-sass styles/ -o dist/",
+    "build:js": "babel --presets es2015 -d lib/ src/scripts",
+    "build:css": "node-sass src/styles -o dist/",
     "build": "npm run build:css && npm run build:js",
 
     "watch:js": "watchify examples/js/app.js -d -o examples/app.js -t [ babelify --presets [ es2015 ] ]",
