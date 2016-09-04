@@ -44,10 +44,10 @@ mkdir vendor
 cd vendor
 ```
 
-Now create a soft link for `avalonbox` styles from `node_modules`:
+Now create a symlink for `avalonbox` styles from `node_modules`:
 
 ```
-ln -s ../../node_modules/avalonbox/styles/ avalonbox
+ln -s ../../node_modules/avalonbox/src/styles/ avalonbox
 ```
 
 Then you can simply import the avalonbox Sass file
@@ -57,8 +57,6 @@ within your main Sass code:
 ```sass
 @import 'vendor/avalonbox/avalonbox';
 ```
-
-It's three/four steps but I think it's worth the hassle.
 
 ## Examples
 
