@@ -8,7 +8,7 @@
     "clean": "rm -r dist/*",
 
     "deploy:site": "gh-pages -d examples",
-    "deploy:css": "node-sass styles/ -o examples/css",
+    "deploy:css": "node-sass src/styles/ -o examples/css",
     "deploy:js": "browserify -d examples/js/app.js -o examples/app.js -t [ babelify --presets [ es2015 ] ]",
 
     "build:js": "babel --presets es2015 -d lib/ src/scripts",
