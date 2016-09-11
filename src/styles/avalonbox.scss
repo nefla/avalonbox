@@ -1,5 +1,9 @@
 $box: 'avalonbox';
 
+.hide {
+  display: none;
+}
+
 .#{$box}-overlay {
   opacity: 1;
   background: rgba(0, 0, 0, 0.8);
@@ -28,6 +32,11 @@ $box: 'avalonbox';
   left: 50%;
   transform: translate(-50%, -50%);
   border: 9px solid #fff;
+
+}
+
+.#{$box}-frame-single > .#{$box}-prev-button {
+  border: 1px solid red;
 }
 
 .#{$box}-frame-image {
