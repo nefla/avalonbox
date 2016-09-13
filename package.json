@@ -9,13 +9,13 @@
 
     "deploy:site": "gh-pages -d examples",
     "deploy:css": "node-sass src/styles/ -o examples/css",
-    "deploy:js": "browserify -d examples/js/app.js -o examples/app.js -t [ babelify --presets [ es2015 ] ]",
+    "deploy:js": "browserify -d examples/js/app.js -o examples/bundle.js -t [ babelify --presets [ es2015 ] ]",
 
     "build:js": "babel --presets es2015 -d lib/ src/scripts",
     "build:css": "node-sass src/styles -o dist/",
     "build": "npm run build:css && npm run build:js",
 
-    "watch:js": "watchify examples/js/app.js -d -o examples/app.js -t [ babelify --presets [ es2015 ] ]",
+    "watch:js": "watchify examples/js/app.js -d -o examples/bundle.js -t [ babelify --presets [ es2015 ] ]",
     "watch:css": "npm run deploy:css -- -w",
     "serve": "npm run watch:css | npm run watch:js",
 
