@@ -21,7 +21,7 @@ const Avalonbox = (function(){
     frame.container.appendChild(buttons.prev)
     frame.container.appendChild(buttons.next)
     overlay.appendChild(frame.container)
-    
+
     bind(overlay, 'click', hideOverlay)
     bind(buttons.prev, 'click', previous)
     bind(buttons.next, 'click', next)
@@ -29,9 +29,9 @@ const Avalonbox = (function(){
   }
 
   function hideOverlay(e){
-    if (!frame.container.contains(e.target)){
+    let f = frame.container;
+    if ((f === e.target) || (! f.contains(e.target)))
       cleanFrame()
-    }
   }
 
   function cleanFrame(){
@@ -66,6 +66,8 @@ const Avalonbox = (function(){
       frame.image.src = current_link.getAttribute('href')
       frame.link.href = current_link.getAttribute('href')
     }
+    
+    e.stopPropagation()
   }
 
   function previous(e){
@@ -76,6 +78,8 @@ const Avalonbox = (function(){
       frame.image.src = current_link.getAttribute('href')
       frame.link.href = current_link.getAttribute('href')
     }
+
+    e.stopPropagation()
   }
 
   // TODO: Swap [].slice for Array.from (ES6)
