@@ -9,7 +9,7 @@ const Avalonbox = (function(){
   const frame = html.createFrame(doc, box)
 
   let active
-  let current_link
+  let currentLink
 
   initialize()
 
@@ -21,6 +21,9 @@ const Avalonbox = (function(){
     frame.container.appendChild(buttons.prev)
     frame.container.appendChild(buttons.next)
     overlay.appendChild(frame.container)
+    overlay.appendChild(buttons.prev)
+    overlay.appendChild(buttons.next)
+
 
     bind(overlay, 'click', hideOverlay)
     bind(buttons.prev, 'click', previous)
@@ -45,41 +48,62 @@ const Avalonbox = (function(){
 
     active = true
     overlay.style.display = 'block'
-    current_link = e.target.parentNode
-    frame.image.src = current_link.getAttribute('href')
-    frame.link.href = current_link.getAttribute('href')
+    currentLink = e.target.parentNode
 
-    if (single(current_link.parentNode.id)) {
+    loadImage()
+
+    if (single(currentLink.parentNode.id)) {
       html.hide(buttons.prev)
       html.hide(buttons.next)
     } else {
-      html.show(buttons.prev)
-      html.show(buttons.next)
+      if (currentLink.previousElementSibling)
+        html.show(buttons.prev)
+      else
+        html.hide(buttons.prev)
+
+      if (currentLink.nextElementSibling)
+        html.show(buttons.next)
+      else
+        html.hide(buttons.next)
     }
   }
 
   function next(e){
-    current_link = current_link.nextElementSibling
-      ? current_link.nextElementSibling
-      : current_link
-    if (current_link) {
-      frame.image.src = current_link.getAttribute('href')
-      frame.link.href = current_link.getAttribute('href')
+    html.show(buttons.prev)
+    if (currentLink.nextElementSibling) {
+      currentLink = currentLink.nextElementSibling
+      loadImage()
+      if (!currentLink.nextElementSibling)
+        html.hide(buttons.next)
     }
-    
+
     e.stopPropagation()
   }
 
   function previous(e){
-    current_link = current_link.previousElementSibling
-      ? current_link.previousElementSibling
-      : current_link
-    if (current_link) {
-      frame.image.src = current_link.getAttribute('href')
-      frame.link.href = current_link.getAttribute('href')
+    html.show(buttons.next)
+    if (currentLink.previousElementSibling) {
+      currentLink = currentLink.previousElementSibling
+      loadImage()
+      if (! currentLink.previousElementSibling)
+        html.hide(buttons.prev)
     }
 
     e.stopPropagation()
+  }
+
+  function loadImage(){
+    frame.image.src = "";
+    let downloadImage = new Image()
+    downloadImage.onload = function(){
+      frame.image.src = this.src
+    }
+
+    setTimeout(() => {
+      downloadImage.src = currentLink.getAttribute('href')
+    }, 100)
+
+    frame.link.href = currentLink.getAttribute('href')
   }
 
   // TODO: Swap [].slice for Array.from (ES6)
