@@ -2,32 +2,105 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Examples</title>
+    <title>Avalonbox - A simple lightbox solution in vanilla js.</title>
     <link rel="stylesheet" href="css/index.css" media="screen"charset="utf-8">
     <link rel="stylesheet" href="css/avalonbox.css" media="screen" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"~>
   </head>
   <body>
-    <div class="container">
-      <h1 class="main-title">Avalonbox</h1>
-      <p class="subtitle">A simple lightbox solution in vanilla js.</p>
-
-      <h2 class="title">Example:</h2>
-
-      <div id="image-gallery" class="gallery">
-        <a href="images/image_1.jpg">
-          <img src="images/thumb_image_1.jpg" alt="" />
+    <header class="header">
+      <div class="container">
+        <h1 class="header-title">Avalonbox</h1>
+        <p class="header-subtitle">A simple lightbox solution in vanilla js.</p>
+        <a class="btn btn-large btn-default"
+           href="http://github.com/nafta7/avalonbox">
+          View on Github
         </a>
-
-        <a href="images/image_2.jpg">
-          <img src="images/thumb_image_2.jpg" alt="" />
-        </a>
-
-        <a href="images/image_3.jpg">
-          <img src="images/thumb_image_3.jpg" alt="" />
-        </a>
-
       </div>
-    </div>
+    </header>
+    <main class="content-main">
+      <div class="container">
+        <h2 class="title">Examples:</h2>
+
+        <h3 class="subtitle">Single image:</h3>
+
+        <div id="image-gallery-single" class="gallery">
+          <a href="images/image_1.jpg">
+            <img src="images/thumb_image_1.jpg" alt="" />
+          </a>
+        </div>
+
+
+        <h3 class="subtitle">Multiple images:</h3>
+        <div class="gallery" id="image-gallery-many">
+          <a href="images/old_stock/img_1.jpg">
+            <img src="images/old_stock/img_1.jpg" alt="" />
+          </a>
+
+          <a href="images/old_stock/img_2.jpg">
+            <img src="images/old_stock/img_2.jpg" alt="" />
+          </a>
+
+          <a href="images/old_stock/img_3.jpg">
+            <img src="images/old_stock/img_3.jpg" alt="" />
+          </a>
+
+          <a href="images/old_stock/img_4.jpg">
+            <img src="images/old_stock/img_4.jpg" alt="" />
+          </a>
+
+          <a href="images/old_stock/img_5.jpg">
+            <img src="images/old_stock/img_5.jpg" alt="" />
+          </a>
+
+          <a href="images/old_stock/img_6.jpg">
+            <img src="images/old_stock/img_6.jpg" alt="" />
+          </a>
+
+          <a href="images/old_stock/img_7.jpg">
+            <img src="images/old_stock/img_7.jpg" alt="" />
+          </a>
+
+          <a href="images/old_stock/img_8.jpg">
+            <img src="images/old_stock/img_8.jpg" alt="" />
+          </a>
+        </div>
+
+        <h3 class="subtitle">Different aspect ratios:</h3>
+        <div id="image-gallery-multiple" class="gallery">
+          <a href="images/space_shuttle/image_1(4x3).jpg">
+            <img src="images/space_shuttle/thumb_image_1(4x3).jpg" alt="" />
+          </a>
+
+          <a href="images/space_shuttle/image_2(9x16).jpg">
+            <img src="images/space_shuttle/thumb_image_2(9x16).jpg" alt="" />
+          </a>
+
+          <a href="images/space_shuttle/image_3(16x9).jpg">
+            <img src="images/space_shuttle/thumb_image_3(16x9).jpg" alt="" />
+          </a>
+
+          <a href="images/space_shuttle/image_4(3x4).jpg">
+            <img src="images/space_shuttle/thumb_image_4(3x4).jpg" alt="" />
+          </a>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="grid">
+          <div class="left">
+            <p>
+              Avalonbox is open-sourced under the MIT license.
+            </p>
+          </div>
+          <div class="right">
+            <a class="btn btn-default" href="http://github.com/">View on Github</a>
+          </div>
+        </div>
+      </div>
+    </footer>
     <script src="bundle.js" charset="utf-8"></script>
   </body>
 </html>
