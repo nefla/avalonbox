@@ -37,10 +37,6 @@ $box: 'avalonbox';
   z-index: 2000;
 }
 
-.#{$box}-frame-single > .#{$box}-prev-button {
-  border: 1px solid red;
-}
-
 .#{$box}-frame-image {
   position: absolute;
   max-width: 100%;
