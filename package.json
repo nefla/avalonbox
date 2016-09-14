@@ -11,15 +11,13 @@
     "pages:push": "gh-pages -d pages",
     "pages:build:css": "node-sass src/styles/ -o pages/css",
     "pages:build:js": "browserify -d pages/js/app.js -o pages/bundle.js -t [ babelify --presets [ es2015 ] ]",
+    "pages:watch:js": "watchify pages/js/app.js -d -o pages/bundle.js -t [ babelify --presets [ es2015 ] ]",
+    "pages:watch:css": "npm run pages:build:css -- -w",
+    "pages:serve": "npm run pages:watch:css | npm run pages:watch:js",
 
     "build:js": "babel --presets es2015 -d lib/ src/scripts",
     "build:css": "node-sass src/styles -o dist/",
     "build": "npm run build:css && npm run build:js",
-
-    "watch:js": "watchify pages/js/app.js -d -o pages/bundle.js -t [ babelify --presets [ es2015 ] ]",
-    "watch:css": "npm run deploy:css -- -w",
-    "serve": "npm run watch:css | npm run watch:js",
-
     "prepublish": "npm run build:js && npm run build:css"
   },
   "keywords": [],
