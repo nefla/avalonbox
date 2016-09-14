@@ -1,15 +1,16 @@
 {
   "name": "avalonbox",
   "version": "0.0.1",
-  "description": "",
+  "description": "A simple lightbox solution in vanilla js.",
   "main": "lib/scripts/avalonbox.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -r dist/*",
 
-    "deploy:site": "gh-pages -d pages",
-    "deploy:css": "node-sass src/styles/ -o pages/css",
-    "deploy:js": "browserify -d pages/js/app.js -o pages/bundle.js -t [ babelify --presets [ es2015 ] ]",
+    "deploy:site": "npm run pages:build:css && npm run pages:build:js && npm run pages:push",
+    "pages:push": "gh-pages -d pages",
+    "pages:build:css": "node-sass src/styles/ -o pages/css",
+    "pages:build:js": "browserify -d pages/js/app.js -o pages/bundle.js -t [ babelify --presets [ es2015 ] ]",
 
     "build:js": "babel --presets es2015 -d lib/ src/scripts",
     "build:css": "node-sass src/styles -o dist/",
@@ -23,7 +24,7 @@
   },
   "keywords": [],
   "author": "nafta",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-preset-es2015": "^6.14.0",
