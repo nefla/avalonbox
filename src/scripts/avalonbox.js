@@ -136,9 +136,9 @@ const Avalonbox = (function(){
       return
 
     if (e.keyCode == '37')
-      previous()
+      previous(e)
     else if (e.keyCode == '39')
-      next()
+      next(e)
   }
 
   return {
