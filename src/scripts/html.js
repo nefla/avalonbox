@@ -18,6 +18,22 @@ function createNextButton(doc, box){
   return next
 }
 
+function createSpinner(doc, box){
+  const spinner = doc.createElement('div')
+  spinner.id = `${box}-spinner`
+  spinner.className = `${box}-spinner`
+
+  return spinner
+}
+
+function createSpinnerWrapper(doc, box) {
+  const wrapper = doc.createElement('div')
+  wrapper.id = `${box}-spinner-wrapper`
+  wrapper.className = `${box}-spinner-wrapper`
+
+  return wrapper
+}
+
 function createFrame(doc, box){
   const frame = doc.createElement('div')
   frame.id = `${box}-frame`
@@ -66,6 +82,8 @@ export {
   createNextButton,
   createFrame,
   createOverlayBox,
+  createSpinner,
+  createSpinnerWrapper,
   getOverlayBox,
   hide,
   show,

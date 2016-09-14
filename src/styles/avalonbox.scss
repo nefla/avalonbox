@@ -80,3 +80,25 @@ $box: 'avalonbox';
   right: 20px;
   transform: translate(0, -50%);
 }
+
+.#{$box}-spinner-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5000;
+
+  @keyframes rotate {
+    0%    { transform: rotate(0deg); }
+    100%  { transform: rotate(360deg); }
+  }
+}
+
+.#{$box}-spinner {
+  height: 100px;
+  width: 100px;
+  animation: rotate 0.8s infinite linear;
+  border: 8px solid #fff;
+  border-right-color: transparent;
+  border-radius: 50%;
+}

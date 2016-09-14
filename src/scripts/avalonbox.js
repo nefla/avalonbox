@@ -7,6 +7,8 @@ const Avalonbox = (function(){
   const buttons = {}
   const overlay = html.createOverlayBox(doc, box)
   const frame = html.createFrame(doc, box)
+  const spinner = html.createSpinner(doc, box)
+  const spinnerWrapper = html.createSpinnerWrapper(doc, box)
 
   let active
   let currentLink
@@ -18,9 +20,9 @@ const Avalonbox = (function(){
     html.appendChild(doc, overlay)
     buttons.prev = html.createPreviousButton(doc, box)
     buttons.next = html.createNextButton(doc, box)
-    frame.container.appendChild(buttons.prev)
-    frame.container.appendChild(buttons.next)
+    spinnerWrapper.appendChild(spinner)
     overlay.appendChild(frame.container)
+    overlay.appendChild(spinnerWrapper)
     overlay.appendChild(buttons.prev)
     overlay.appendChild(buttons.next)
 
@@ -93,16 +95,15 @@ const Avalonbox = (function(){
   }
 
   function loadImage(){
-    frame.image.src = "";
+    frame.image.src = ''
+    spinner.className = spinner.className.replace(' hide', '')
     let downloadImage = new Image()
     downloadImage.onload = function(){
       frame.image.src = this.src
+      spinner.className = spinner.className + ' hide'
     }
 
-    setTimeout(() => {
-      downloadImage.src = currentLink.getAttribute('href')
-    }, 100)
-
+    downloadImage.src = currentLink.getAttribute('href')
     frame.link.href = currentLink.getAttribute('href')
   }
 
