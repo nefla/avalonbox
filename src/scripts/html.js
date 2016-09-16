@@ -1,24 +1,25 @@
 import bind from './bind'
+const box = 'avalonbox'
 
-function createPreviousButton(doc, box){
+function createPreviousButton(doc){
   const prev = doc.createElement('button')
-  prev.id = "previous"
-  prev.className = `${box}-prev-button`
+  prev.id = `${box}-prev`
+  prev.className = `${box}-move-button ${box}-prev-button`
   prev.innerHTML = "&lt"
   prev.type = "button"
   return prev
 }
 
-function createNextButton(doc, box){
+function createNextButton(doc){
   const next = doc.createElement('button')
-  next.id = "next"
-  next.className = `${box}-next-button`
+  next.id = `${box}-next`
+  next.className = `${box}-move-button ${box}-next-button`
   next.innerHTML = "&gt"
   next.type = "button"
   return next
 }
 
-function createSpinner(doc, box){
+function createSpinner(doc){
   const spinner = doc.createElement('div')
   spinner.id = `${box}-spinner`
   spinner.className = `${box}-spinner`
@@ -26,7 +27,7 @@ function createSpinner(doc, box){
   return spinner
 }
 
-function createSpinnerWrapper(doc, box) {
+function createSpinnerWrapper(doc) {
   const wrapper = doc.createElement('div')
   wrapper.id = `${box}-spinner-wrapper`
   wrapper.className = `${box}-spinner-wrapper`
@@ -34,7 +35,7 @@ function createSpinnerWrapper(doc, box) {
   return wrapper
 }
 
-function createFrame(doc, box){
+function createFrame(doc){
   const frame = doc.createElement('div')
   frame.id = `${box}-frame`
   frame.className = `${box}-frame`
@@ -52,24 +53,24 @@ function createFrame(doc, box){
   return {container: frame, image: image, link: link}
 }
 
-function createOverlayBox(doc, box){
+function createOverlayBox(doc){
   const overlay = doc.createElement('div')
   overlay.className = `${box}-overlay`
   overlay.id = `${box}-overlay`
   return overlay
 }
 
-function getOverlayBox(doc, box) {
+function getOverlayBox(doc) {
   const overlay = doc.getElementById(`${box}-overlay`)
   return overlay
 }
 
 function hide(el) {
-  el.className = el.className.replace(' hide', '') + ' hide'
+  el.className = el.className.replace(` ${box}-hide`, '') + ` ${box}-hide`
 }
 
 function show(el) {
-  el.className = el.className.replace(' hide', '')
+  el.className = el.className.replace(` ${box}-hide`, '')
 }
 
 function appendChild(doc, el) {

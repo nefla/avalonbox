@@ -3,12 +3,12 @@ import bind from './bind'
 
 const Avalonbox = (function(){
   const doc = document
-  const box = 'avalonbox'
   const buttons = {}
-  const overlay = html.createOverlayBox(doc, box)
-  const frame = html.createFrame(doc, box)
-  const spinner = html.createSpinner(doc, box)
-  const spinnerWrapper = html.createSpinnerWrapper(doc, box)
+  const overlay = html.createOverlayBox(doc)
+  const frame = html.createFrame(doc)
+  const spinner = html.createSpinner(doc)
+  const spinnerWrapper = html.createSpinnerWrapper(doc)
+  const downloadImage = new Image()
 
   let active
   let currentLink
@@ -17,9 +17,10 @@ const Avalonbox = (function(){
 
   function initialize(){
     active = false
+    html.hide(overlay)
     html.appendChild(doc, overlay)
-    buttons.prev = html.createPreviousButton(doc, box)
-    buttons.next = html.createNextButton(doc, box)
+    buttons.prev = html.createPreviousButton(doc)
+    buttons.next = html.createNextButton(doc)
     spinnerWrapper.appendChild(spinner)
     overlay.appendChild(frame.container)
     overlay.appendChild(spinnerWrapper)
@@ -40,7 +41,7 @@ const Avalonbox = (function(){
   }
 
   function cleanFrame(){
-    overlay.style.display = 'none'
+    html.hide(overlay)
     frame.image.src = ""
     active = false
   }
@@ -49,7 +50,7 @@ const Avalonbox = (function(){
     e.preventDefault()
 
     active = true
-    overlay.style.display = 'block'
+    html.show(overlay)
     currentLink = e.target.parentNode
 
     loadImage()
@@ -96,13 +97,14 @@ const Avalonbox = (function(){
 
   function loadImage(){
     frame.image.src = ''
-    spinner.className = spinner.className.replace(' hide', '')
-    let downloadImage = new Image()
+    html.hide(frame.image)
+    html.show(spinner)
     downloadImage.onload = function(){
+      html.show(frame.image)
       frame.image.src = this.src
-      spinner.className = spinner.className + ' hide'
+      html.hide(spinner)
     }
-
+    
     downloadImage.src = currentLink.getAttribute('href')
     frame.link.href = currentLink.getAttribute('href')
   }
