@@ -1,7 +1,7 @@
 {
   "name": "avalonbox",
   "version": "0.0.1",
-  "description": "A simple lightbox solution in vanilla js.",
+  "description": "A simple lightbox solution in vanilla JS.",
   "main": "lib/avalonbox.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
