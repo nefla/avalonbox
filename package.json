@@ -6,14 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -r dist/*",
+    "deploy:site": "npm run pages:build && npm run pages:min && npm run pages:push",
     "pages:min": "usemin pages/main.html --dest pages -o pages/index.html --htmlmin true --rmlr true",
-    "deploy:site": "npm run pages:build && npm run pages:push",
     "pages:push": "gh-pages -d pages",
-    "pages:build": "npm run pages:build:css && npm run pages:build:js",
-    "pages:build:css": "node-sass src/styles/ -o pages/css",
+    "pages:build": "npm run build:css && npm run pages:build:js",
     "pages:build:js": "browserify -d pages/js/app.js -o pages/js/bundle.js -t [ babelify --presets [ es2015 ] ]",
     "pages:watch:js": "watchify pages/js/app.js -d -o pages/js/bundle.js -t [ babelify --presets [ es2015 ] ]",
-    "pages:watch:css": "npm run pages:build:css -- -w",
+    "pages:watch:css": "npm run build:css -- -w",
     "pages:serve": "npm run pages:watch:css | npm run pages:watch:js",
     "build:js": "babel --presets es2015 -d lib/ src/scripts",
     "build:css": "node-sass src/styles -o dist/",
@@ -29,8 +28,8 @@
     "babelify": "^7.3.0",
     "browserify": "^13.1.0",
     "gh-pages": "^0.11.0",
-    "highlight.js": "^9.6.0",
     "node-sass": "^3.8.0",
+    "prismjs": "^1.5.1",
     "usemin-cli": "^0.1.0",
     "watchify": "^3.7.0"
   }

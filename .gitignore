@@ -3,6 +3,7 @@ npm-debug.log
 examples/images
 pages/images
 
+pages/index.html
 pages/css/index.all.css
 pages/css/avalonbox.css
 pages/js/bundle.all.js
