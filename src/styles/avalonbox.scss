@@ -1,6 +1,13 @@
 $box: 'avalonbox';
 
-.hide {
+@mixin avalonbox-prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  #{$property}: $value;
+}
+
+.#{$box}-hide {
   display: none;
 }
 
@@ -14,7 +21,6 @@ $box: 'avalonbox';
   width: 100%;
   height: 100%;
   z-index: 1000;
-  display: none;
 }
 
 .#{$box}-hide {
@@ -35,7 +41,7 @@ $box: 'avalonbox';
   margin: 0 auto;
   z-index: 2000;
   top: 50%;
-  transform: translate(0, -50%);
+  @include avalonbox-prefix(transform, translate(0, -50%), webkit ms);
 }
 
 .#{$box}-frame-image {
@@ -45,11 +51,11 @@ $box: 'avalonbox';
   border: 9px solid #fff;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  @include avalonbox-prefix(transform, translate(-50%, -50%), webkit ms)
 }
 
-
-.#{$box}-prev-button, .#{$box}-next-button {
+.#{$box}-move-button {
+  position: absolute;
   background: rgba(0, 0, 0, 0.2);
   color: #fff;
   border: none;
@@ -60,38 +66,32 @@ $box: 'avalonbox';
 
   font-size: 3em;
   line-height: 0;
+  top: 10px;
 
   &:hover {
     opacity: 1;
     cursor: pointer;
   }
+
+  @media screen and (min-width: 500px) {
+    top: 50%;
+    @include avalonbox-prefix(transform, translate(0%, -50%), webkit ms)
+  }
 }
 
 .#{$box}-prev-button {
-  position: absolute;
-  top: 50%;
   left: 20px;
-  transform: translate(0%, -50%);
 }
 
 .#{$box}-next-button {
-  position: absolute;
-  top: 50%;
   right: 20px;
-  transform: translate(0, -50%);
 }
 
 .#{$box}-spinner-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5000;
-
-  @keyframes rotate {
-    0%    { transform: rotate(0deg); }
-    100%  { transform: rotate(360deg); }
-  }
+  @include avalonbox-prefix(transform, translate(-50%, -50%), webkit ms)
 }
 
 .#{$box}-spinner {
@@ -101,4 +101,9 @@ $box: 'avalonbox';
   border: 8px solid #fff;
   border-right-color: transparent;
   border-radius: 50%;
+
+  @keyframes rotate {
+    0%    { transform: rotate(0deg); }
+    100%  { transform: rotate(360deg); }
+  }
 }
