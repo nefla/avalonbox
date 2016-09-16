@@ -1,6 +1,6 @@
 # avalonbox
 
-> A simple lightbox solution in vanilla js.
+> A simple lightbox solution in vanilla JS.
 
 ## Install
 
@@ -12,7 +12,7 @@ npm install https://github.com/Nafta7/avalonbox
 
 ```js
 import avalonbox from 'avalonbox'
-avalonbox.init('#image-gallery')
+avalonbox.run('image-gallery')
 ```
 
 ## CSS
@@ -47,7 +47,7 @@ cd vendor
 Now create a symlink for `avalonbox` styles from `node_modules`:
 
 ```
-ln -s ../../node_modules/avalonbox/src/styles/ avalonbox
+ln -s ../../node_modules/avalonbox/src/styles/avalonbox.scss avalonbox.scss
 ```
 
 Then you can simply import the avalonbox Sass file
@@ -55,7 +55,7 @@ within your main Sass code:
 
 `sass/main.scss`
 ```sass
-@import 'vendor/avalonbox/avalonbox';
+@import 'vendor/avalonbox';
 ```
 
 ## Examples
