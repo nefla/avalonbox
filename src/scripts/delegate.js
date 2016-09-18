@@ -1,6 +1,6 @@
 const delegate = function(criteria, listener) {
   return function(e) {
-    const el = e.target
+    let el = e.target
     do {
       if (!criteria(el))
         continue
