@@ -1,5 +1,6 @@
 import  * as html from './html'
 import bind from './bind'
+import delegate from './delegate'
 
 const Avalonbox = (function(){
   const doc = document
@@ -27,7 +28,6 @@ const Avalonbox = (function(){
     overlay.appendChild(buttons.prev)
     overlay.appendChild(buttons.next)
 
-
     bind(overlay, 'click', hideOverlay)
     bind(buttons.prev, 'click', previous)
     bind(buttons.next, 'click', next)
@@ -48,14 +48,12 @@ const Avalonbox = (function(){
 
   function showOverlay(e){
     e.preventDefault()
-
     active = true
     html.show(overlay)
-    currentLink = e.target.parentNode
-
+    currentLink = e.delegateTarget
     loadImage()
 
-    if (single(currentLink.parentNode.id)) {
+    if (single(e.currentTarget.id)) {
       html.hide(buttons.prev)
       html.hide(buttons.next)
     } else {
@@ -104,7 +102,7 @@ const Avalonbox = (function(){
       frame.image.src = this.src
       html.hide(spinner)
     }
-    
+
     downloadImage.src = currentLink.getAttribute('href')
     frame.link.href = currentLink.getAttribute('href')
   }
@@ -122,17 +120,13 @@ const Avalonbox = (function(){
   }
 
   function eventHandlers(query){
-    let links = document.getElementById(query)
-      .getElementsByTagName('a')
-    links = [].slice.call(links)
-    links.forEach(link => {
-      bind(link, 'click', showOverlay)
-    })
-
+    const el = document.getElementById(query)
+    const filterLinks = x => x.tagName.toLowerCase() == 'a'
+    el.addEventListener('click', delegate(filterLinks, showOverlay))
   }
 
-  function keyPressHandler(e){
-    e = e || window.event
+  function keyPressHandler(event){
+    const e = event || window.event
 
     if (!active)
       return
