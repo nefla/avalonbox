@@ -1,0 +1,33 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.grid {
+  width: 100%;
+}
+
+.grid:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.left, .right {
+  float: left;
+  width: 100%;
+}
+
+.left {
+  margin-bottom: 30px;
+}
+
+@include respond-to(medium) {
+  .left {
+    width: 70%;
+    margin-bottom: 0;
+  }
+  .right {
+    width: 30%;
+  }
+}

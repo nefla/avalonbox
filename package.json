@@ -13,10 +13,11 @@
 
     "pages:build": "npm run build:css && npm run pages:build:js",
     "pages:build:pug": "pug pages/views/*.pug --out pages",
+    "pages:build:css": "node-sass pages/styles -o pages/css",
     "pages:build:js": "browserify -d pages/js/app.js -o pages/js/bundle.js -t [ babelify --presets [ es2015 ] ]",
     "pages:watch:js": "watchify pages/js/app.js -d -o pages/js/bundle.js -t [ babelify --presets [ es2015 ] ]",
 
-    "pages:watch:css": "npm run build:css -- -w",
+    "pages:watch:css": "npm run pages:build:css -- -w",
     "pages:watch:pug": "pug pages/views/*.pug --out pages -w",
     "pages:watch": "npm run pages:watch:css | npm run pages:watch:js | npm run pages:watch:pug",
     "pages:sync": "browser-sync start --config bs-config.js",
