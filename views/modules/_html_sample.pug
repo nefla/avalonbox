@@ -1,0 +1,25 @@
+#html-sample
+  h2(class="title") HTML sample
+  p Here's what a sample HTML code of an image gallery should look like:
+  pre
+    code(class="language-html")
+      = '<div id="image-gallery" class="gallery">\n'
+      =   '  <a href="images/image_1.jpg">\n'
+      =     '    <img src="images/thumb_image_1.jpg" />\n'
+      =   '  </a>\n'
+
+      =  '  <a href="images/image_2.jpg">\n'
+      =    '    <img src="images/thumb_image_2.jpg" />\n'
+      =  '  </a>\n'
+
+      =  '  <a href="images/image_3.jpg">\n'
+      =    '    <img src="images/thumb_image_3.jpg" />\n'
+      =  '  </a>\n'
+      = '</div>'
+  p
+    | Notes:
+    ul
+      li The #[b href] attribute in the link element should point
+        | to the image to display.
+      li You usually display a thumbnail image (smaller version) instead
+        | of the original smage scaled down because it's faster to load.

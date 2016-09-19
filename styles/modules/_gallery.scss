@@ -1,0 +1,13 @@
+.gallery img {
+  padding: 5px;
+  vertical-align: middle;
+  width: 100%;
+
+  @include respond-to(small) {
+    width: 49%;
+  }
+
+  @include respond-to(medium) {
+    width: 24.5%;
+  }
+}

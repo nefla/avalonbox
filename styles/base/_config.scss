@@ -1,0 +1,36 @@
+$breakpoints: (
+  small: (min-width: 767px),
+  medium: (min-width: 992px),
+  large: (min-width: 1200px)
+);
+
+$color-primary: hsl(240, 14%, 38%);
+$color-secondary: hsl(182, 44%, 42%);
+$color-black: hsl(248, 10%, 15%);
+$color-white: hsl(10, 20%, 88%);
+
+$palettes: (
+  primary: (
+    base: $color-primary,
+    light: lighten($color-primary, 15%),
+    dark: darken($color-primary, 15%),
+  ),
+
+  secondary: (
+    base: $color-secondary,
+    light: lighten($color-secondary, 15%),
+    dark: darken($color-secondary, 15%),
+  ),
+
+  black: (
+    base: $color-black,
+    light: lighten($color-black, 5%),
+    dark: darken($color-black, 5%)
+  ),
+
+  white: (
+    base: $color-white,
+    light: lighten($color-white, 15%),
+    dark: darken($color-white, 15%)
+  ),
+);

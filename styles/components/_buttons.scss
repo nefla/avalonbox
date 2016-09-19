@@ -1,0 +1,17 @@
+.btn {
+  padding: 15px 40px;
+  font-size: 1em;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.btn-default {
+  background: palette(white);
+  color: palette(secondary);
+}
+
+.btn-default:hover {
+  color: palette(white);
+  background: palette(secondary);
+}

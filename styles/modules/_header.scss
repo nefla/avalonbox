@@ -1,0 +1,18 @@
+.header {
+  background: palette(primary);
+  padding: 60px 30px;
+  text-align: center;
+}
+
+.header-title {
+  font-size: 250%;
+  color: palette(black);
+  font-weight: 700;
+}
+
+.header-subtitle {
+  font-size: 125%;
+  color: palette(white);
+  margin-bottom: 50px;
+  font-weight: 300;
+}
