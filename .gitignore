@@ -7,4 +7,6 @@ pages/css
 pages/js/bundle.all.js
 pages/js/bundle.js
 
+pages/html
+
 pages/*.html

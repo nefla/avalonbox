@@ -1,7 +1,4 @@
 module.exports = {
-  files: ['pages/css/*.css', 'pages/js/*.js', 'pages/*.html', 'pages/views/*.pug'],
-  server: {
-    baseDir: ['./', 'pages']
-  },
-  startPath: '/pages/demo.html'
+  files: ['pages/css/*.css', 'pages/js/*.js', 'pages/views/*.pug'],
+  proxy: 'localhost:3000'
 }
