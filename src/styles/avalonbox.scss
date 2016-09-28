@@ -66,7 +66,8 @@ $box: 'avalonbox';
 
   font-size: 3em;
   line-height: 0;
-  top: 10px;
+  bottom: 0;
+  width: 45%;
 
   &:hover {
     opacity: 1;
@@ -74,17 +75,19 @@ $box: 'avalonbox';
   }
 
   @media screen and (min-width: 500px) {
+    width: 80px;
     top: 50%;
+    height: 100%;
     @include avalonbox-prefix(transform, translate(0%, -50%), webkit ms)
   }
 }
 
 .#{$box}-prev-button {
-  left: 20px;
+  left: 0;
 }
 
 .#{$box}-next-button {
-  right: 20px;
+  right: 0;
 }
 
 .#{$box}-spinner-wrapper {

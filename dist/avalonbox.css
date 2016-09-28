@@ -54,22 +54,25 @@
   z-index: 3000;
   font-size: 3em;
   line-height: 0;
-  top: 10px; }
+  bottom: 0;
+  width: 45%; }
   .avalonbox-move-button:hover {
     opacity: 1;
     cursor: pointer; }
   @media screen and (min-width: 500px) {
     .avalonbox-move-button {
+      width: 80px;
       top: 50%;
+      height: 100%;
       -webkit-transform: translate(0%, -50%);
       -ms-transform: translate(0%, -50%);
       transform: translate(0%, -50%); } }
 
 .avalonbox-prev-button {
-  left: 20px; }
+  left: 0; }
 
 .avalonbox-next-button {
-  right: 20px; }
+  right: 0; }
 
 .avalonbox-spinner-wrapper {
   position: absolute;
