@@ -22,8 +22,9 @@
     "pages:watch": "npm run pages:watch:css | npm run pages:watch:js",
     "pages:sync": "node app & browser-sync start --config bs-config.js",
     "pages:sync_inline": "browser-sync start --server 'pages' --index 'demo.html' --files 'pages/css/*.css, pages/js/*.js, pages/*.html, pages/views/*.pug'",
-    "pages:serve": "npm run pages:watch | npm run pages:sync",
+    "pages:serve": "npm run pages:watch | npm run pages:sync | npm run watch:css",
     "build:js": "babel --presets es2015 -d lib/ src/scripts",
+    "watch:css": "npm run build:css -- -w",
     "build:css": "node-sass src/styles -o dist/",
     "build": "npm run build:css && npm run build:js",
     "prepublish": "npm run build:js && npm run build:css"
