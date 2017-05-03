@@ -4,58 +4,20 @@
 
 ## Install
 
+Install the package
 ```
 npm install https://github.com/Nafta7/avalonbox
 ```
+
+Get the CSS file from *dist* OR from the github [CDN](https://cdn.rawgit.com/Nafta7/avalonbox/master/dest/avalonbox.css) OR
+
+Since the component was developed using Sass you could integrate with your code in case you are using Sass.
 
 ## Usage
 
 ```js
 import avalonbox from 'avalonbox'
 avalonbox.run('image-gallery')
-```
-
-## CSS
-
-### Option 1: CDN
-
-For a quick start you can just grab the css file from the github cdn:
-https://cdn.rawgit.com/Nafta7/avalonbox/master/dest/avalonbox.css
-
-### Option 2: Integration with Sass
-
-Avalonbox was built using Sass and its easy to integrate
-with your Sass code. You can download the source files from
-the repository or import directly from `node_modules`.
-
-See.
-
-Enter in your Sass directory:
-
-```
-cd path/to/sass
-```
-
-Create a `vendor` folder (in case you don't have yet)
-inside this directory to hold any third-party Sass imports.
-
-```
-mkdir vendor
-cd vendor
-```
-
-Now create a symlink for `avalonbox` styles from `node_modules`:
-
-```
-ln -s ../../node_modules/avalonbox/src/styles/avalonbox.scss avalonbox.scss
-```
-
-Then you can simply import the avalonbox Sass file
-within your main Sass code:
-
-`sass/main.scss`
-```sass
-@import 'vendor/avalonbox';
 ```
 
 ## Examples
