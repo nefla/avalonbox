@@ -1,25 +1,29 @@
 import bind from './bind'
+import Direction from '../constants/Direction'
+import capitalize from '../utils/capitalize'
+import oppositeDirection from '../utils/opposite-direction'
+
 const box = 'avalonbox'
 
-function createPreviousButton(doc){
+function createPreviousButton(doc) {
   const prev = doc.createElement('button')
   prev.id = `${box}-prev`
   prev.className = `${box}-move-button ${box}-prev-button`
-  prev.innerHTML = "&lt"
-  prev.type = "button"
+  prev.innerHTML = '&lt'
+  prev.type = 'button'
   return prev
 }
 
-function createNextButton(doc){
+function createNextButton(doc) {
   const next = doc.createElement('button')
   next.id = `${box}-next`
   next.className = `${box}-move-button ${box}-next-button`
-  next.innerHTML = "&gt"
-  next.type = "button"
+  next.innerHTML = '&gt'
+  next.type = 'button'
   return next
 }
 
-function createSpinner(doc){
+function createSpinner(doc) {
   const spinner = doc.createElement('div')
   spinner.id = `${box}-spinner`
   spinner.className = `${box}-spinner`
@@ -35,25 +39,28 @@ function createSpinnerWrapper(doc) {
   return wrapper
 }
 
-function createFrame(doc){
+function createFrame(doc) {
   const frame = doc.createElement('div')
   frame.id = `${box}-frame`
   frame.className = `${box}-frame`
 
   const image = doc.createElement('img')
+  image.src = ''
   image.className = `${box}-frame-image`
   image.id = `${box}-frame-image`
 
   const link = doc.createElement('a')
   link.appendChild(image)
 
-  bind(link, 'click', e => { e.preventDefault() })
+  bind(link, 'click', e => {
+    e.preventDefault()
+  })
 
   frame.appendChild(link)
-  return {container: frame, image: image, link: link}
+  return { container: frame, image: image, link: link }
 }
 
-function createOverlayBox(doc){
+function createOverlayBox(doc) {
   const overlay = doc.createElement('div')
   overlay.className = `${box}-overlay`
   overlay.id = `${box}-overlay`
@@ -66,16 +73,27 @@ function getOverlayBox(doc) {
 }
 
 function hide(el) {
-  el.className = el.className.replace(` ${box}-hide`, '') + ` ${box}-hide`
+  el.classList.remove('show')
+  el.classList.add('hide')
 }
 
 function show(el) {
-  el.className = el.className.replace(` ${box}-hide`, '')
+  el.classList.remove('hide')
+  el.classList.add('show')
 }
 
 function appendChild(doc, el) {
   doc.getElementsByTagName('body')[0].appendChild(el)
+}
 
+function slideIn(el, DIRECTION) {
+  el.classList.remove(`hide${capitalize(oppositeDirection(DIRECTION))}`)
+  el.classList.add(`show${capitalize(DIRECTION)}`)
+}
+
+function slideOut(el, DIRECTION) {
+  el.classList.remove(`show${capitalize(DIRECTION)}`)
+  el.classList.add(`hide${capitalize(oppositeDirection(DIRECTION))}`)
 }
 
 export {
@@ -88,5 +106,7 @@ export {
   getOverlayBox,
   hide,
   show,
+  slideIn,
+  slideOut,
   appendChild
 }
