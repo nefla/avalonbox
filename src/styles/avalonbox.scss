@@ -47,6 +47,10 @@ $box: 'avalonbox';
   left: 50%;
   transform: translate(-50%, -50%);
 
+  &.show {
+    animation: scaleIn 0.5s forwards;
+  }
+
   &.hideLeft {
     animation: hideLeft 0.5s forwards;
   }
@@ -62,7 +66,9 @@ $box: 'avalonbox';
   &.showLeft {
     animation: showLeft 0.5s forwards;
   }
+
 }
+
 
 .#{$box}-move-button {
   position: absolute;

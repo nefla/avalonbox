@@ -44,8 +44,7 @@ const Avalonbox = (function() {
 
   function cleanFrame() {
     html.hide(overlay)
-    frame.image.classList.remove('showRight')
-    frame.image.classList.remove('showLeft')
+    frame.image.classList.remove('showRight', 'showLeft', 'show')
     frame.image.src = ''
     active = false
   }
@@ -70,7 +69,7 @@ const Avalonbox = (function() {
   }
 
   function next(e) {
-    frame.image.classList.remove('showLeft')
+    frame.image.classList.remove('showLeft', 'show')
     html.show(buttons.prev)
     if (currentLink.nextElementSibling) {
       currentLink = currentLink.nextElementSibling
@@ -82,7 +81,7 @@ const Avalonbox = (function() {
   }
 
   function previous(e) {
-    frame.image.classList.remove('showRight')
+    frame.image.classList.remove('showRight', 'show')
     html.show(buttons.next)
     if (currentLink.previousElementSibling) {
       currentLink = currentLink.previousElementSibling
@@ -93,19 +92,18 @@ const Avalonbox = (function() {
     e.stopPropagation()
   }
 
-  function loadImage(DIRECTION = Direction.RIGHT) {
-    html.slideOut(frame.image, DIRECTION)
+  function loadImage(DIRECTION) {
+    if (DIRECTION) html.slideOut(frame.image, DIRECTION)
     html.show(spinner)
-    setTimeout(() => {
-      downloadImage.onload = function() {
-        html.slideIn(frame.image, DIRECTION)
-        frame.image.src = this.src
-        html.hide(spinner)
-      }
+    downloadImage.onload = function() {
+      if (DIRECTION) html.slideIn(frame.image, DIRECTION)
+      else html.show(frame.image)
+      frame.image.src = this.src
+      html.hide(spinner)
+    }
 
-      downloadImage.src = currentLink.getAttribute('href')
-      frame.link.href = currentLink.getAttribute('href')
-    }, 500)
+    downloadImage.src = currentLink.getAttribute('href')
+    frame.link.href = currentLink.getAttribute('href')
   }
 
   // TODO: Swap [].slice for Array.from (ES6)
