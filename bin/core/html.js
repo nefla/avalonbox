@@ -3,11 +3,23 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.appendChild = exports.show = exports.hide = exports.getOverlayBox = exports.createSpinnerWrapper = exports.createSpinner = exports.createOverlayBox = exports.createFrame = exports.createNextButton = exports.createPreviousButton = undefined;
+exports.appendChild = exports.slideOut = exports.slideIn = exports.show = exports.hide = exports.getOverlayBox = exports.createSpinnerWrapper = exports.createSpinner = exports.createOverlayBox = exports.createFrame = exports.createNextButton = exports.createPreviousButton = undefined;
 
 var _bind = require('./bind');
 
 var _bind2 = _interopRequireDefault(_bind);
+
+var _Direction = require('../constants/Direction');
+
+var _Direction2 = _interopRequireDefault(_Direction);
+
+var _capitalize = require('../utils/capitalize');
+
+var _capitalize2 = _interopRequireDefault(_capitalize);
+
+var _oppositeDirection = require('../utils/opposite-direction');
+
+var _oppositeDirection2 = _interopRequireDefault(_oppositeDirection);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17,8 +29,8 @@ function createPreviousButton(doc) {
   var prev = doc.createElement('button');
   prev.id = box + '-prev';
   prev.className = box + '-move-button ' + box + '-prev-button';
-  prev.innerHTML = "&lt";
-  prev.type = "button";
+  prev.innerHTML = '&lt';
+  prev.type = 'button';
   return prev;
 }
 
@@ -26,8 +38,8 @@ function createNextButton(doc) {
   var next = doc.createElement('button');
   next.id = box + '-next';
   next.className = box + '-move-button ' + box + '-next-button';
-  next.innerHTML = "&gt";
-  next.type = "button";
+  next.innerHTML = '&gt';
+  next.type = 'button';
   return next;
 }
 
@@ -53,6 +65,7 @@ function createFrame(doc) {
   frame.className = box + '-frame';
 
   var image = doc.createElement('img');
+  image.src = '';
   image.className = box + '-frame-image';
   image.id = box + '-frame-image';
 
@@ -80,15 +93,27 @@ function getOverlayBox(doc) {
 }
 
 function hide(el) {
-  el.className = el.className.replace(' ' + box + '-hide', '') + (' ' + box + '-hide');
+  el.classList.remove('show');
+  el.classList.add('hide');
 }
 
 function show(el) {
-  el.className = el.className.replace(' ' + box + '-hide', '');
+  el.classList.remove('hide');
+  el.classList.add('show');
 }
 
 function appendChild(doc, el) {
   doc.getElementsByTagName('body')[0].appendChild(el);
+}
+
+function slideIn(el, DIRECTION) {
+  el.classList.remove('hide' + (0, _capitalize2.default)((0, _oppositeDirection2.default)(DIRECTION)));
+  el.classList.add('show' + (0, _capitalize2.default)(DIRECTION));
+}
+
+function slideOut(el, DIRECTION) {
+  el.classList.remove('show' + (0, _capitalize2.default)(DIRECTION));
+  el.classList.add('hide' + (0, _capitalize2.default)((0, _oppositeDirection2.default)(DIRECTION)));
 }
 
 exports.createPreviousButton = createPreviousButton;
@@ -100,4 +125,6 @@ exports.createSpinnerWrapper = createSpinnerWrapper;
 exports.getOverlayBox = getOverlayBox;
 exports.hide = hide;
 exports.show = show;
+exports.slideIn = slideIn;
+exports.slideOut = slideOut;
 exports.appendChild = appendChild;

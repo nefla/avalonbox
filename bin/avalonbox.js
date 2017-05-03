@@ -1,16 +1,26 @@
 'use strict';
 
-var _html = require('./html');
+var _html = require('./core/html');
 
 var html = _interopRequireWildcard(_html);
 
-var _bind = require('./bind');
+var _bind = require('./core/bind');
 
 var _bind2 = _interopRequireDefault(_bind);
+
+var _delegate = require('./core/delegate');
+
+var _delegate2 = _interopRequireDefault(_delegate);
+
+var _Direction = require('./constants/Direction');
+
+var _Direction2 = _interopRequireDefault(_Direction);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var box = 'avalonbox';
 
 var Avalonbox = function () {
   var doc = document;
@@ -28,7 +38,6 @@ var Avalonbox = function () {
 
   function initialize() {
     active = false;
-    html.hide(overlay);
     html.appendChild(doc, overlay);
     buttons.prev = html.createPreviousButton(doc);
     buttons.next = html.createNextButton(doc);
@@ -51,20 +60,20 @@ var Avalonbox = function () {
 
   function cleanFrame() {
     html.hide(overlay);
-    frame.image.src = "";
+    frame.image.classList.remove('showRight');
+    frame.image.classList.remove('showLeft');
+    frame.image.src = '';
     active = false;
   }
 
   function showOverlay(e) {
     e.preventDefault();
-
     active = true;
     html.show(overlay);
-    currentLink = e.target.parentNode;
-
+    currentLink = e.delegateTarget;
     loadImage();
 
-    if (single(currentLink.parentNode.id)) {
+    if (single(e.currentTarget.id)) {
       html.hide(buttons.prev);
       html.hide(buttons.next);
     } else {
@@ -75,10 +84,11 @@ var Avalonbox = function () {
   }
 
   function next(e) {
+    frame.image.classList.remove('showLeft');
     html.show(buttons.prev);
     if (currentLink.nextElementSibling) {
       currentLink = currentLink.nextElementSibling;
-      loadImage();
+      loadImage(_Direction2.default.RIGHT);
       if (!currentLink.nextElementSibling) html.hide(buttons.next);
     }
 
@@ -86,10 +96,11 @@ var Avalonbox = function () {
   }
 
   function previous(e) {
+    frame.image.classList.remove('showRight');
     html.show(buttons.next);
     if (currentLink.previousElementSibling) {
       currentLink = currentLink.previousElementSibling;
-      loadImage();
+      loadImage(_Direction2.default.LEFT);
       if (!currentLink.previousElementSibling) html.hide(buttons.prev);
     }
 
@@ -97,17 +108,20 @@ var Avalonbox = function () {
   }
 
   function loadImage() {
-    frame.image.src = '';
-    html.hide(frame.image);
-    html.show(spinner);
-    downloadImage.onload = function () {
-      html.show(frame.image);
-      frame.image.src = this.src;
-      html.hide(spinner);
-    };
+    var DIRECTION = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _Direction2.default.RIGHT;
 
-    downloadImage.src = currentLink.getAttribute('href');
-    frame.link.href = currentLink.getAttribute('href');
+    html.slideOut(frame.image, DIRECTION);
+    html.show(spinner);
+    setTimeout(function () {
+      downloadImage.onload = function () {
+        html.slideIn(frame.image, DIRECTION);
+        frame.image.src = this.src;
+        html.hide(spinner);
+      };
+
+      downloadImage.src = currentLink.getAttribute('href');
+      frame.link.href = currentLink.getAttribute('href');
+    }, 500);
   }
 
   // TODO: Swap [].slice for Array.from (ES6)
@@ -122,15 +136,15 @@ var Avalonbox = function () {
   }
 
   function eventHandlers(query) {
-    var links = document.getElementById(query).getElementsByTagName('a');
-    links = [].slice.call(links);
-    links.forEach(function (link) {
-      (0, _bind2.default)(link, 'click', showOverlay);
-    });
+    var el = document.getElementById(query);
+    var filterLinks = function filterLinks(x) {
+      return x.tagName.toLowerCase() == 'a';
+    };
+    el.addEventListener('click', (0, _delegate2.default)(filterLinks, showOverlay));
   }
 
-  function keyPressHandler(e) {
-    e = e || window.event;
+  function keyPressHandler(event) {
+    var e = event || window.event;
 
     if (!active) return;
 
