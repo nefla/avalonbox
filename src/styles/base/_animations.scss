@@ -1,4 +1,5 @@
-@keyframes animateIn {
+// Overlay fade animations
+@keyframes fadeIn {
   0% {
     opacity: 0;
     z-index: -1000;
@@ -13,7 +14,7 @@
   }
 }
 
-@keyframes animateOut {
+@keyframes fadeOut {
   0% {
     opacity: 1;
     z-index: 1000;
@@ -28,32 +29,35 @@
   }
 }
 
-@keyframes hideLeft {
+// Slide image animations
+@keyframes slideOutLeft {
   0%   { transform: translate(-50%, -50%);  }
   100% { transform: translate(-250%, -50%); }
 }
 
-@keyframes hideRight {
+@keyframes slideOutRight {
   0%   { transform: translate(-50%, -50%);   }
-  100% { transform: translate(200%, -50%); }
+  100% { transform: translate(200%, -50%);   }
 }
 
-@keyframes showRight {
-  0%   { transform: translate(250%, -50%); }
-  100% { transform: translate(-50%, -50%); }
+@keyframes slideInRight {
+  0%   { transform: translate(250%, -50%);   }
+  100% { transform: translate(-50%, -50%);   }
 }
 
-@keyframes showLeft {
-  0%   { transform: translate(-250%, -50%); }
-  100% { transform: translate(-50%, -50%);  }
+@keyframes slideInLeft {
+  0%   { transform: translate(-250%, -50%);  }
+  100% { transform: translate(-50%, -50%);   }
 }
 
+// Image focus animation
 @keyframes scaleIn {
   0%   { transform: translate(-50%, -50%) scale(0.4); }
   100% { transform: translate(-50%, -50%) scale(1);   }
 }
 
-@keyframes rotate {
+// Spinner/loading animation
+@keyframes spin {
   0%   { transform: rotate(0deg);   }
   100% { transform: rotate(360deg); }
 }
