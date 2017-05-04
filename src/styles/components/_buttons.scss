@@ -1,20 +1,19 @@
 
 .#{$box}-move-button {
+  width: 25%;
+  height: 25%;
+  font-size: 1em;
   position: absolute;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0);
   color: #fff;
   border: none;
-  width: 60px;
-  height: 60px;
   opacity: 0.5;
   outline: none;
   transition: all $buttonFadeDuration ease-in-out;
   z-index: 3000;
 
-  font-size: 3em;
   line-height: 0;
   bottom: 0;
-  width: 45%;
 
   &:hover {
     opacity: 1;
@@ -27,9 +26,8 @@
   }
 
   @media screen and (min-width: 500px) {
-    width: 80px;
+    width: 8%;
     top: 50%;
-    height: 100%;
     transform: translate(0%, -50%);
   }
 }
@@ -40,4 +38,20 @@
 
 .#{$box}-next-button {
   right: 0;
+}
+
+.icon {
+  fill: #fff;
+}
+
+.svgOuter {
+  width: 100%;
+  padding-top: 48%;
+  position: relative;
+}
+
+.svgInner {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

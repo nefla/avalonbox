@@ -2,14 +2,14 @@ import bind from './bind'
 import Direction from '../constants/Direction'
 import capitalize from '../utils/capitalize'
 import oppositeDirection from '../utils/opposite-direction'
-
+import { LeftIcon, RightIcon } from '../icons'
 const box = 'avalonbox'
 
 function createPreviousButton(doc) {
   const prev = doc.createElement('button')
   prev.id = `${box}-prev`
   prev.className = `${box}-move-button ${box}-prev-button`
-  prev.innerHTML = '&lt'
+  prev.innerHTML = LeftIcon
   prev.type = 'button'
   return prev
 }
@@ -18,7 +18,7 @@ function createNextButton(doc) {
   const next = doc.createElement('button')
   next.id = `${box}-next`
   next.className = `${box}-move-button ${box}-next-button`
-  next.innerHTML = '&gt'
+  next.innerHTML = RightIcon
   next.type = 'button'
   return next
 }
