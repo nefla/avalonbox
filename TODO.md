@@ -2,7 +2,7 @@
 
 - [x] Add animations
 - [x] Load less images
-- [ ] Refactor styles into small components, add variables
+- [x] Refactor styles into small components, add variables
 - [ ] Compress the images
 - [ ] Add svg icons
 - [ ] Decide a name for the project
