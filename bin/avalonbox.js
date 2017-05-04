@@ -21,6 +21,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var box = 'avalonbox';
+var isDev = true;
 
 var Avalonbox = function () {
   var doc = document;
@@ -60,8 +61,7 @@ var Avalonbox = function () {
 
   function cleanFrame() {
     html.hide(overlay);
-    frame.image.classList.remove('showRight');
-    frame.image.classList.remove('showLeft');
+    frame.image.classList.remove('showRight', 'showLeft', 'show');
     frame.image.src = '';
     active = false;
   }
@@ -71,7 +71,7 @@ var Avalonbox = function () {
     active = true;
     html.show(overlay);
     currentLink = e.delegateTarget;
-    loadImage();
+    fetchImage();
 
     if (single(e.currentTarget.id)) {
       html.hide(buttons.prev);
@@ -84,11 +84,11 @@ var Avalonbox = function () {
   }
 
   function next(e) {
-    frame.image.classList.remove('showLeft');
+    frame.image.classList.remove('showLeft', 'show');
     html.show(buttons.prev);
     if (currentLink.nextElementSibling) {
       currentLink = currentLink.nextElementSibling;
-      loadImage(_Direction2.default.RIGHT);
+      fetchImage(_Direction2.default.RIGHT);
       if (!currentLink.nextElementSibling) html.hide(buttons.next);
     }
 
@@ -96,32 +96,40 @@ var Avalonbox = function () {
   }
 
   function previous(e) {
-    frame.image.classList.remove('showRight');
+    frame.image.classList.remove('showRight', 'show');
     html.show(buttons.next);
     if (currentLink.previousElementSibling) {
       currentLink = currentLink.previousElementSibling;
-      loadImage(_Direction2.default.LEFT);
+      fetchImage(_Direction2.default.LEFT);
       if (!currentLink.previousElementSibling) html.hide(buttons.prev);
     }
 
     e.stopPropagation();
   }
 
-  function loadImage() {
-    var DIRECTION = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _Direction2.default.RIGHT;
-
-    html.slideOut(frame.image, DIRECTION);
+  function fetchImage(DIRECTION) {
+    if (DIRECTION) html.slideOut(frame.image, DIRECTION);
     html.show(spinner);
-    setTimeout(function () {
-      downloadImage.onload = function () {
-        html.slideIn(frame.image, DIRECTION);
-        frame.image.src = this.src;
-        html.hide(spinner);
-      };
+    downloadImage.onload = function () {
+      onLoadImage.bind(this, DIRECTION)();
+    };
 
-      downloadImage.src = currentLink.getAttribute('href');
-      frame.link.href = currentLink.getAttribute('href');
-    }, 500);
+    downloadImage.src = currentLink.getAttribute('href');
+    frame.link.href = currentLink.getAttribute('href');
+  }
+
+  function onLoadImage(DIRECTION) {
+    if (isDev) {
+      setTimeout(loadImage.bind(this, DIRECTION), 1000);
+    } else {
+      loadImage.bind(this, DIRECTION)();
+    }
+  }
+
+  function loadImage(DIRECTION) {
+    if (DIRECTION) html.slideIn(frame.image, DIRECTION);else html.show(frame.image);
+    frame.image.src = this.src;
+    html.hide(spinner);
   }
 
   // TODO: Swap [].slice for Array.from (ES6)
