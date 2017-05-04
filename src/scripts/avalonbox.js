@@ -5,6 +5,7 @@ import delegate from './core/delegate'
 import Direction from './constants/Direction'
 
 const box = 'avalonbox'
+const isDev = true
 
 const Avalonbox = (function() {
   const doc = document
@@ -54,7 +55,7 @@ const Avalonbox = (function() {
     active = true
     html.show(overlay)
     currentLink = e.delegateTarget
-    loadImage()
+    fetchImage()
 
     if (single(e.currentTarget.id)) {
       html.hide(buttons.prev)
@@ -73,7 +74,7 @@ const Avalonbox = (function() {
     html.show(buttons.prev)
     if (currentLink.nextElementSibling) {
       currentLink = currentLink.nextElementSibling
-      loadImage(Direction.RIGHT)
+      fetchImage(Direction.RIGHT)
       if (!currentLink.nextElementSibling) html.hide(buttons.next)
     }
 
@@ -85,25 +86,37 @@ const Avalonbox = (function() {
     html.show(buttons.next)
     if (currentLink.previousElementSibling) {
       currentLink = currentLink.previousElementSibling
-      loadImage(Direction.LEFT)
+      fetchImage(Direction.LEFT)
       if (!currentLink.previousElementSibling) html.hide(buttons.prev)
     }
 
     e.stopPropagation()
   }
 
-  function loadImage(DIRECTION) {
+  function fetchImage(DIRECTION) {
     if (DIRECTION) html.slideOut(frame.image, DIRECTION)
     html.show(spinner)
     downloadImage.onload = function() {
-      if (DIRECTION) html.slideIn(frame.image, DIRECTION)
-      else html.show(frame.image)
-      frame.image.src = this.src
-      html.hide(spinner)
+      onLoadImage.bind(this, DIRECTION)()
     }
 
     downloadImage.src = currentLink.getAttribute('href')
     frame.link.href = currentLink.getAttribute('href')
+  }
+
+  function onLoadImage(DIRECTION) {
+    if (isDev) {
+      setTimeout(loadImage.bind(this, DIRECTION), 1000)
+    } else {
+      loadImage.bind(this, DIRECTION)()
+    }
+  }
+
+  function loadImage(DIRECTION) {
+    if (DIRECTION) html.slideIn(frame.image, DIRECTION)
+    else html.show(frame.image)
+    frame.image.src = this.src
+    html.hide(spinner)
   }
 
   // TODO: Swap [].slice for Array.from (ES6)
