@@ -3,9 +3,11 @@ import bind from './core/bind'
 import delegate from './core/delegate'
 
 import Direction from './constants/Direction'
+import AppConstants from './constants/AppConstants'
+const config = require('./appconfig')
 
 const box = 'avalonbox'
-const isDev = true
+const isDev = config.mode === AppConstants.DEV
 
 const Avalonbox = (function() {
   const doc = document
