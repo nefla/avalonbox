@@ -1,8 +1,9 @@
 node_modules/
 npm-debug.log
 examples/images
-pages/images
+docs.md
 
+pages/images
 pages/css
 pages/js/bundle.all.js
 pages/js/bundle.js
