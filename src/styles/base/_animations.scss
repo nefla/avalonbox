@@ -22,29 +22,31 @@
 
 // Slide image animations
 @keyframes slideOutLeft {
-  0%   { transform: translate(-50%, -50%);  }
-  100% { transform: translate(-250%, -50%); }
+  0%   { transform: translate(-50%, -50%);   }
+  55%  { opacity: 0;  }
+  100% { transform: translate(-250%, -50%); opacity: 0; }
 }
 
 @keyframes slideOutRight {
   0%   { transform: translate(-50%, -50%);   }
-  100% { transform: translate(200%, -50%);   }
+  55%  { opacity: 0;  }
+  100% { transform: translate(200%, -50%);  }
 }
 
 @keyframes slideInRight {
-  0%   { transform: translate(250%, -50%);   }
-  100% { transform: translate(-50%, -50%);   }
+  0%   { transform: translate(250%, -50%); opacity: 0;  }
+  100% { transform: translate(-50%, -50%); opacity: 1;  }
 }
 
 @keyframes slideInLeft {
-  0%   { transform: translate(-250%, -50%);  }
-  100% { transform: translate(-50%, -50%);   }
+  0%   { transform: translate(-250%, -50%); opacity: 0;  }
+  100% { transform: translate(-50%, -50%);  opacity: 1;  }
 }
 
 // Image focus animation
 @keyframes scaleIn {
-  0%   { transform: translate(-50%, -50%) scale(0.4); }
-  100% { transform: translate(-50%, -50%) scale(1);   }
+  0%   { transform: translate(-50%, -50%) scale(0.4); opacity: 0;  }
+  100% { transform: translate(-50%, -50%) scale(1);   opacity: 1;  }
 }
 
 // Spinner/loading animation
