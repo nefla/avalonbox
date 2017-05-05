@@ -2,30 +2,21 @@
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    z-index: -1000;
-  }
-  10% {
-    opacity: 0;
-    z-index: 1000;
   }
   100% {
     opacity: 1;
-    z-index: 1000;
+    visibility: visible;
   }
 }
 
 @keyframes fadeOut {
   0% {
     opacity: 1;
-    z-index: 1000;
-  }
-  50% {
-    opacity: 0;
-    z-index: 1000;
+    visibility: visible;
   }
   100% {
-    z-index: -1000;
     opacity: 0;
+    visibility: hidden;
   }
 }
 
