@@ -14,6 +14,7 @@ const Avalonbox = (function() {
   const buttons = {}
   const overlay = html.createOverlayBox(doc)
   const frame = html.createFrame(doc)
+  frame.image.addEventListener('animationend', onImageAnimationEnd, false)
   const spinner = html.createSpinner(doc)
   const spinnerWrapper = html.createSpinnerWrapper(doc)
   const downloadImage = new Image()
@@ -95,15 +96,23 @@ const Avalonbox = (function() {
     e.stopPropagation()
   }
 
+  function onImageAnimationEnd(e) {
+    downloadImage.src = currentLink.getAttribute('href')
+    frame.link.href = currentLink.getAttribute('href')
+  }
+
   function fetchImage(DIRECTION) {
-    if (DIRECTION) html.slideOut(frame.image, DIRECTION)
-    html.show(spinner)
     downloadImage.onload = function() {
       onLoadImage.bind(this, DIRECTION)()
     }
+    if (DIRECTION) {
+      html.slideOut(frame.image, DIRECTION)
+    } else {
+      downloadImage.src = currentLink.getAttribute('href')
+      frame.link.href = currentLink.getAttribute('href')
+    }
 
-    downloadImage.src = currentLink.getAttribute('href')
-    frame.link.href = currentLink.getAttribute('href')
+    html.show(spinner)
   }
 
   function onLoadImage(DIRECTION) {
