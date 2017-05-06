@@ -41,6 +41,11 @@ HTML sample code:
 
 </div>
 ```
+
+## Third-party resources
+
+(CC BY 3.0 US) [Navigation icons](https://thenounproject.com/fatahillah/collection/navigations-arrows-siji/)
+
 ## License
 
 MIT.
