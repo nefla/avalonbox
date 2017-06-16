@@ -16,18 +16,25 @@ var _Direction = require('./constants/Direction');
 
 var _Direction2 = _interopRequireDefault(_Direction);
 
+var _AppConstants = require('./constants/AppConstants');
+
+var _AppConstants2 = _interopRequireDefault(_AppConstants);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+var config = require('./appconfig');
+
 var box = 'avalonbox';
-var isDev = true;
+var isDev = config.mode === _AppConstants2.default.DEV;
 
 var Avalonbox = function () {
   var doc = document;
   var buttons = {};
   var overlay = html.createOverlayBox(doc);
   var frame = html.createFrame(doc);
+  frame.image.addEventListener('animationend', onImageAnimationEnd, false);
   var spinner = html.createSpinner(doc);
   var spinnerWrapper = html.createSpinnerWrapper(doc);
   var downloadImage = new Image();
@@ -68,6 +75,7 @@ var Avalonbox = function () {
 
   function showOverlay(e) {
     e.preventDefault();
+    cleanFrame();
     active = true;
     html.show(overlay);
     currentLink = e.delegateTarget;
@@ -107,15 +115,23 @@ var Avalonbox = function () {
     e.stopPropagation();
   }
 
+  function onImageAnimationEnd(e) {
+    downloadImage.src = currentLink.getAttribute('href');
+    frame.link.href = currentLink.getAttribute('href');
+  }
+
   function fetchImage(DIRECTION) {
-    if (DIRECTION) html.slideOut(frame.image, DIRECTION);
-    html.show(spinner);
     downloadImage.onload = function () {
       onLoadImage.bind(this, DIRECTION)();
     };
+    if (DIRECTION) {
+      html.slideOut(frame.image, DIRECTION);
+    } else {
+      downloadImage.src = currentLink.getAttribute('href');
+      frame.link.href = currentLink.getAttribute('href');
+    }
 
-    downloadImage.src = currentLink.getAttribute('href');
-    frame.link.href = currentLink.getAttribute('href');
+    html.show(spinner);
   }
 
   function onLoadImage(DIRECTION) {

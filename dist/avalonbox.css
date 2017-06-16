@@ -1,54 +1,58 @@
 @keyframes fadeIn {
   0% {
-    opacity: 0;
-    z-index: -1000; }
-  10% {
-    opacity: 0;
-    z-index: 1000; }
+    opacity: 0; }
   100% {
     opacity: 1;
-    z-index: 1000; } }
+    visibility: visible; } }
 
 @keyframes fadeOut {
   0% {
     opacity: 1;
-    z-index: 1000; }
-  50% {
-    opacity: 0;
-    z-index: 1000; }
+    visibility: visible; }
   100% {
-    z-index: -1000;
-    opacity: 0; } }
+    opacity: 0;
+    visibility: hidden; } }
 
 @keyframes slideOutLeft {
   0% {
     transform: translate(-50%, -50%); }
+  55% {
+    opacity: 0; }
   100% {
-    transform: translate(-250%, -50%); } }
+    transform: translate(-250%, -50%);
+    opacity: 0; } }
 
 @keyframes slideOutRight {
   0% {
     transform: translate(-50%, -50%); }
+  55% {
+    opacity: 0; }
   100% {
     transform: translate(200%, -50%); } }
 
 @keyframes slideInRight {
   0% {
-    transform: translate(250%, -50%); }
+    transform: translate(250%, -50%);
+    opacity: 0; }
   100% {
-    transform: translate(-50%, -50%); } }
+    transform: translate(-50%, -50%);
+    opacity: 1; } }
 
 @keyframes slideInLeft {
   0% {
-    transform: translate(-250%, -50%); }
+    transform: translate(-250%, -50%);
+    opacity: 0; }
   100% {
-    transform: translate(-50%, -50%); } }
+    transform: translate(-50%, -50%);
+    opacity: 1; } }
 
 @keyframes scaleIn {
   0% {
-    transform: translate(-50%, -50%) scale(0.4); }
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0; }
   100% {
-    transform: translate(-50%, -50%) scale(1); } }
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1; } }
 
 @keyframes spin {
   0% {
@@ -65,7 +69,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: -1000; }
+  visibility: hidden; }
   .avalonbox-overlay.hide {
     animation: fadeOut 0.7s forwards; }
   .avalonbox-overlay.show {
@@ -103,20 +107,19 @@
     animation: slideInLeft 0.5s forwards; }
 
 .avalonbox-move-button {
+  width: 25%;
+  height: 25%;
+  font-size: 1em;
   position: absolute;
-  background: rgba(0, 0, 0, 0.2);
+  background: transparent;
   color: #fff;
   border: none;
-  width: 60px;
-  height: 60px;
   opacity: 0.5;
   outline: none;
   transition: all 0.4s ease-in-out;
   z-index: 3000;
-  font-size: 3em;
   line-height: 0;
-  bottom: 0;
-  width: 45%; }
+  bottom: 0; }
   .avalonbox-move-button:hover {
     opacity: 1;
     cursor: pointer; }
@@ -125,9 +128,8 @@
     visibility: hidden; }
   @media screen and (min-width: 500px) {
     .avalonbox-move-button {
-      width: 80px;
+      width: 8%;
       top: 50%;
-      height: 100%;
       transform: translate(0%, -50%); } }
 
 .avalonbox-prev-button {
@@ -135,6 +137,19 @@
 
 .avalonbox-next-button {
   right: 0; }
+
+.icon {
+  fill: #fff; }
+
+.svgOuter {
+  width: 100%;
+  padding-top: 48%;
+  position: relative; }
+
+.svgInner {
+  position: absolute;
+  top: 0;
+  left: 0; }
 
 .avalonbox-spinner-wrapper {
   position: absolute;

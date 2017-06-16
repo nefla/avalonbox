@@ -21,6 +21,8 @@ var _oppositeDirection = require('../utils/opposite-direction');
 
 var _oppositeDirection2 = _interopRequireDefault(_oppositeDirection);
 
+var _icons = require('../icons');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var box = 'avalonbox';
@@ -29,7 +31,7 @@ function createPreviousButton(doc) {
   var prev = doc.createElement('button');
   prev.id = box + '-prev';
   prev.className = box + '-move-button ' + box + '-prev-button';
-  prev.innerHTML = '&lt';
+  prev.innerHTML = _icons.LeftIcon;
   prev.type = 'button';
   return prev;
 }
@@ -38,7 +40,7 @@ function createNextButton(doc) {
   var next = doc.createElement('button');
   next.id = box + '-next';
   next.className = box + '-move-button ' + box + '-next-button';
-  next.innerHTML = '&gt';
+  next.innerHTML = _icons.RightIcon;
   next.type = 'button';
   return next;
 }
