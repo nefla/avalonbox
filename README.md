@@ -42,6 +42,25 @@ HTML sample code:
 </div>
 ```
 
+## Development
+
+Clone the repository and move to the directory:
+```bash
+git clone https://github.com/Nafta7/avalonbox.git
+cd avalonbox
+```
+
+Install the dependencies and run build:
+```bash
+npm install
+npm build
+```
+
+Finally, run npm start:
+```bash
+npm start
+```
+
 ## Third-party resources
 
 (CC BY 3.0 US) [Navigation icons](https://thenounproject.com/fatahillah/collection/navigations-arrows-siji/)
