@@ -6,10 +6,10 @@
 
 Install the package
 ```
-npm install https://github.com/Nafta7/avalonbox
+npm install https://github.com/Nefla/avalonbox
 ```
 
-Get the CSS file from *dist* OR from the github [CDN](https://cdn.rawgit.com/Nafta7/avalonbox/master/dest/avalonbox.css) OR
+Get the CSS file from *dist* OR from the github [CDN](https://cdn.rawgit.com/Nefla/avalonbox/master/dist/avalonbox.css) OR
 
 Since the component was developed using Sass you could integrate with your code in case you are using Sass.
 
@@ -46,7 +46,7 @@ HTML sample code:
 
 Clone the repository and move to the directory:
 ```bash
-git clone https://github.com/Nafta7/avalonbox.git
+git clone https://github.com/Nefla/avalonbox.git
 cd avalonbox
 ```
 
